@@ -39,8 +39,6 @@ if decision == "0":
             ingresos_txt.close()
             
             centinela_3 = False
-            
-        else: continue
 
 elif decision == "1":
     
