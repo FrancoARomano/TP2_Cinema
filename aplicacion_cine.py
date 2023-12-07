@@ -381,8 +381,7 @@ class Ventana2:
         
         self.imagen_bytes = self.codigo_base64.split(",", 1)[1]
         
-        self.imagen_bytes = base64.b64decode(self.codigo_base64)
-        
+        self.imagen_bytes = base64.b64decode(self.imagen_bytes)
         self.imagen_pillow = Image.open(BytesIO(self.imagen_bytes))
         self.imagen_pillow = self.imagen_pillow.resize((387,387))
         self.tk_imagen = ImageTk.PhotoImage(self.imagen_pillow)
