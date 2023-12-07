@@ -54,19 +54,22 @@ elif decision == "1":
             
         for codes in decode(frame):
             info = codes.data.decode('utf-8')
-            info_para_txt = info.split(",")
-            print(info)
-            print(info_para_txt)
             
             with open("ingresos.txt", "a") as ingresos_txt:
             
-                ingresos_txt.write(info_para_txt + "\n")
+                ingresos_txt.write(info + "\n")
+                
+            with open("ingresos.txt", "r") as archivo:
+                contenido = archivo.read()
+                contenido_lista = contenido.split("\n")
+                
+                for i in contenido_lista:
+                    if info == i: centinela_2 = False
             
             ingresos_txt.close()
-
+        
         cv2.imshow("LECTOR DE QR", frame)
             
-        
         t = cv2.waitKey(1)
         
         if t == ord('q'):
