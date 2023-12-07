@@ -378,12 +378,11 @@ class Ventana2:
         self.response = requests.get(self.url_api, headers=self.headers)
         
         self.codigo_base64 = self.response.content.decode("utf-8")
-        self.codigo_base64 = self.codigo_base64.split(",", 1)[1]
         
-        self.longitud_requerida = len(self.codigo_base64) + (4 - len(self.codigo_base64) % 4) % 4
-        self.codigo_base64_padded = self.codigo_base64.ljust(self.longitud_requerida, "=")
+        self.imagen_bytes = self.codigo_base64.split(",", 1)[1]
         
-        self.imagen_bytes = base64.b64decode(self.codigo_base64_padded)
+        self.imagen_bytes = base64.b64decode(self.codigo_base64)
+        
         self.imagen_pillow = Image.open(BytesIO(self.imagen_bytes))
         self.imagen_pillow = self.imagen_pillow.resize((387,387))
         self.tk_imagen = ImageTk.PhotoImage(self.imagen_pillow)
